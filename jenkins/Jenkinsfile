@@ -8,12 +8,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'pwd'
                 sh 'mvn -B -DskipTests clean package'
+                sh 'pwd'
             }
         }
         stage('Test') {
             steps {
+                sh 'pwd'
                 sh 'mvn test'
+                sh 'pwd'
             }
             post {
                 always {
@@ -23,7 +27,9 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                sh 'pwd'
                 sh './jenkins/scripts/deliver.sh'
+                sh 'pwd'
             }
         }
     }
